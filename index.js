@@ -40,7 +40,7 @@ const manager = new PlayerManager({
 		}),
 		new SoundCloudPlugin(),
 		new SpotifyPlugin(),
-		new InfinityPlugin(),
+		// new InfinityPlugin(),
 		new AttachmentsPlugin(),
 	],
 	extensions: [

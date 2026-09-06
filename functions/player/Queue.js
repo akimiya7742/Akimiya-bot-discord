@@ -79,8 +79,11 @@ async function buildImageInWorker(searchPlayer, query) {
 }
 
 /**
- * @param { ButtonInteraction } interaction
- * @param { import("ziplayer").Player } player
+ * @param { object } param0
+ * @param { ButtonInteraction } param0.interaction
+ * @param { import("ziplayer").Player } param0.player
+ * @param { boolean } param0.Nextpage
+ * @returns
  */
 
 module.exports.execute = async ({ interaction, player, Nextpage = true }) => {

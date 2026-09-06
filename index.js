@@ -1,3 +1,4 @@
+console.time("require time");
 require("dotenv").config();
 const { useHooks } = require("zihooks");
 const path = require("node:path");
@@ -9,9 +10,10 @@ const { default: PlayerManager } = require("ziplayer");
 const { TTSPlugin, SoundCloudPlugin, YouTubePlugin, SpotifyPlugin, AttachmentsPlugin } = require("@ziplayer/plugin");
 const { lyricsExt, voiceExt, AiAutoplayExtension } = require("@ziplayer/extension");
 const { InfinityPlugin } = require("@ziplayer/infinity");
-
+console.timeEnd("require time");
+console.time("init time");
 const client = new Client({
-	// rest: [{ timeout: 60_000 }],
+	rest: [{ timeout: 60_000 }],
 	intents: [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildVoiceStates,
@@ -38,7 +40,7 @@ const manager = new PlayerManager({
 		}),
 		new SoundCloudPlugin(),
 		new SpotifyPlugin(),
-		// new InfinityPlugin(),
+		new InfinityPlugin(),
 		new AttachmentsPlugin(),
 	],
 	extensions: [
@@ -47,7 +49,7 @@ const manager = new PlayerManager({
 		new voiceExt(null, { client, minimalVoiceMessageDuration: 1 }),
 	],
 	enableStatsCollection: true,
-	debugLevel: "verbose",
+	debugLevel: "info",
 });
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -61,8 +63,10 @@ if (config?.DevConfig?.Giveaway) {
 		}),
 	);
 }
+console.timeEnd("init time");
 
 const initialize = async () => {
+	console.time("load time");
 	logger.info("Initializing Ziji Bot...");
 	startup.initHooks();
 
@@ -84,6 +88,7 @@ const initialize = async () => {
 			logger.error("Error logging in:", error);
 			logger.error("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bot's INTENTS Are OFF!");
 		});
+	console.timeEnd("load time");
 };
 
 initialize().catch((error) => logger.error("Error during initialization:", error));

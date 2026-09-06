@@ -2,7 +2,6 @@ console.time("require time");
 require("dotenv").config();
 const { useHooks } = require("zihooks");
 const path = require("node:path");
-const { GiveawaysManager } = require("discord-giveaways");
 const { StartupManager } = require("./startup");
 const readline = require("readline");
 const { Client, GatewayIntentBits, Partials } = require("discord.js");
@@ -55,13 +54,7 @@ const manager = new PlayerManager({
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 if (config?.DevConfig?.Giveaway) {
-	useHooks.set(
-		"giveaways",
-		new GiveawaysManager(client, {
-			storage: "./jsons/giveaways.json",
-			default: { botsCanWin: false, embedColor: "Random", embedColorEnd: "#000000", reaction: "🎉" },
-		}),
-	);
+
 }
 console.timeEnd("init time");
 

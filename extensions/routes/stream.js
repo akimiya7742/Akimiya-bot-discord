@@ -19,6 +19,7 @@ router.get("/play", async (req, res) => {
 	try {
 		const player = await getManager().create("webid");
 		const stream = await player.save(trackData); // -> Stream.Readable
+		// const video = await player.saveVideo(trackData); // -> Video Object
 
 		res.writeHead(200, {
 			"Accept-Ranges": "bytes",

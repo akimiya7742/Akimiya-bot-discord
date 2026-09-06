@@ -54,7 +54,6 @@ const manager = new PlayerManager({
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 if (config?.DevConfig?.Giveaway) {
-
 }
 console.timeEnd("init time");
 

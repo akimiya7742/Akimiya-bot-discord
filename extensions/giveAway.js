@@ -18,7 +18,7 @@ module.exports.execute = async (client) => {
 	useHooks.set(
 		"giveaways",
 		new GiveawaysManager(client, {
-			storage: "../jsons/giveaways.json",
+			storage: "./jsons/giveaways.json",
 			default: { botsCanWin: false, embedColor: "Random", embedColorEnd: "#000000", reaction: "🎉" },
 		}),
 	);
